@@ -12,10 +12,10 @@ function getComputerSelection() {
   return pick;
 }
 
-//Get player selection through prompt
-function getPlayerSelection(playerSelection) {
-  pick = playerSelection;
-  console.log(pick);
+function displayStatus(status) {
+  const text = document.createElement("span");
+  text.textContent = status;
+  displayDiv.appendChild(text);
 }
 
 //Plays single round
@@ -26,21 +26,26 @@ function playRound(choice) {
   console.log(`${compSel} ${playSel}`);
   if (compSel == playSel) {
     winLose = "tie";
+    displayStatus(winLose);
     return winLose;
   } else if (
     (compSel == "rock" && playSel == "paper") ||
     (compSel == "rock" && playSel == "scissors")
   ) {
     winLose = "lose";
+    displayStatus(winLose);
     return winLose;
   } else if (compSel == "paper" && playSel == "rock") {
     winLose = "lose";
+    displayStatus(winLose);
     return winLose;
   } else if (compSel == "scissors" && playSel == "paper") {
     winLose = "lose";
+    displayStatus(winLose);
     return winLose;
   } else {
     winLose = "win";
+    displayStatus(winLose);
     return winLose;
   }
 }
@@ -48,6 +53,7 @@ function playRound(choice) {
 const rockButton = document.querySelector("#rock-button");
 const paperButton = document.querySelector("#paper-button");
 const scissorButton = document.querySelector("#scissor-button");
+const displayDiv = document.querySelector("#display");
 
 //Cannot use rockButton.addEventListener("click", getPlayerSelection("rock"));, must indirectly call it with below in anon function
 rockButton.addEventListener("click", () => {
