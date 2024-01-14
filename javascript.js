@@ -13,69 +13,49 @@ function getComputerSelection() {
 }
 
 //Get player selection through prompt
-function getPlayerSelection() {
-  pick = prompt("Pick Rock, Paper, or Scissors");
-  lowerCase = pick.toLowerCase();
-  if (lowerCase == "rock" || lowerCase == "paper" || lowerCase == "scissors") {
-    return lowerCase;
-  }
+function getPlayerSelection(playerSelection) {
+  pick = playerSelection;
+  console.log(pick);
 }
 
 //Plays single round
-function playRound() {
-  compSel = getComputerSelection();
-  playSel = getPlayerSelection();
-  winLose = "";
+function playRound(choice) {
+  let compSel = getComputerSelection();
+  let playSel = choice;
+  let winLose = "";
   console.log(`${compSel} ${playSel}`);
   if (compSel == playSel) {
     winLose = "tie";
-    console.log("tie");
     return winLose;
   } else if (
     (compSel == "rock" && playSel == "paper") ||
     (compSel == "rock" && playSel == "scissors")
   ) {
     winLose = "lose";
-    console.log("lose");
     return winLose;
   } else if (compSel == "paper" && playSel == "rock") {
     winLose = "lose";
-    console.log("lose");
     return winLose;
   } else if (compSel == "scissors" && playSel == "paper") {
     winLose = "lose";
-    console.log("lose");
     return winLose;
   } else {
     winLose = "win";
-    console.log("win");
     return winLose;
   }
 }
 
-//Plays rounds until either player wins 5 roundsg
-function game() {
-  let keepPlaying = true;
-  let compScore = 0;
-  let playerScore = 0;
-  let result = "";
-  while (keepPlaying == true) {
-    result = playRound();
-    if (result == "lose") {
-      compScore = ++compScore;
-    } else if (result == "win") {
-      playerScore = ++playerScore;
-    }
-    console.log(compScore);
-    console.log(playerScore);
-    if (compScore == 5) {
-      console.log("Computer wins!");
-      keepPlaying = false;
-    } else if (playerScore == 5) {
-      console.log("You win!");
-      keepPlaying = false;
-    }
-  }
-}
+const rockButton = document.querySelector("#rock-button");
+const paperButton = document.querySelector("#paper-button");
+const scissorButton = document.querySelector("#scissor-button");
 
-game();
+//Cannot use rockButton.addEventListener("click", getPlayerSelection("rock"));, must indirectly call it with below in anon function
+rockButton.addEventListener("click", () => {
+  console.log(playRound("rock"));
+});
+paperButton.addEventListener("click", () => {
+  console.log(playRound("paper"));
+});
+scissorButton.addEventListener("click", () => {
+  console.log(playRound("scissor"));
+});
