@@ -7,7 +7,7 @@ function getComputerSelection() {
   } else if (num == 1) {
     pick = "paper";
   } else {
-    pick = "scissors";
+    pick = "scissor";
   }
   return pick;
 }
@@ -28,10 +28,7 @@ function playRound(choice) {
     winLose = "tie";
     displayStatus(winLose);
     return winLose;
-  } else if (
-    (compSel == "rock" && playSel == "paper") ||
-    (compSel == "rock" && playSel == "scissors")
-  ) {
+  } else if (compSel == "rock" && playSel == "scissor") {
     winLose = "lose";
     displayStatus(winLose);
     return winLose;
@@ -39,7 +36,7 @@ function playRound(choice) {
     winLose = "lose";
     displayStatus(winLose);
     return winLose;
-  } else if (compSel == "scissors" && playSel == "paper") {
+  } else if (compSel == "scissor" && playSel == "paper") {
     winLose = "lose";
     displayStatus(winLose);
     return winLose;
