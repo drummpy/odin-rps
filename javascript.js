@@ -39,23 +39,45 @@ function playRound(choice) {
     return winLose;
   } else if (compSel == "rock" && playSel == "scissor") {
     winLose = "lose";
+    compScore++;
     displayStatus(winLose, compSel, playSel);
     return winLose;
   } else if (compSel == "paper" && playSel == "rock") {
     winLose = "lose";
+    compScore++;
     displayStatus(winLose, compSel, playSel);
     return winLose;
   } else if (compSel == "scissor" && playSel == "paper") {
     winLose = "lose";
+    compScore++;
     displayStatus(winLose, compSel, playSel);
     return winLose;
   } else {
     winLose = "win";
+    playerScore++;
     displayStatus(winLose, compSel, playSel);
     return winLose;
   }
 }
 
+function isGameOver() {
+  if (compScore == 5 || playerScore == 5) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function gameOver() {
+  if (compScore > playerScore) {
+    arena.textContent = "Game Over! Computer Wins!";
+  } else {
+    arena.textContent = "Game over! You win!";
+  }
+}
+
+let compScore = 0;
+let playerScore = 0;
 const rockButton = document.querySelector("#rock-button");
 const paperButton = document.querySelector("#paper-button");
 const scissorButton = document.querySelector("#scissor-button");
@@ -65,11 +87,23 @@ const arena = document.querySelector(".arena");
 
 //Cannot use rockButton.addEventListener("click", getPlayerSelection("rock"));, must indirectly call it with below in anon function
 rockButton.addEventListener("click", () => {
-  console.log(playRound("rock"));
+  if (!isGameOver()) {
+    console.log(playRound("rock"));
+  } else {
+    gameOver();
+  }
 });
 paperButton.addEventListener("click", () => {
-  console.log(playRound("paper"));
+  if (!isGameOver()) {
+    console.log(playRound("paper"));
+  } else {
+    gameOver();
+  }
 });
 scissorButton.addEventListener("click", () => {
-  console.log(playRound("scissor"));
+  if (!isGameOver()) {
+    console.log(playRound("scissor"));
+  } else {
+    gameOver();
+  }
 });
