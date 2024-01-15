@@ -30,9 +30,19 @@ button {
   align-items: center;
 }
 
+.arena {
+  display: flex;
+  height: 40%;
+  background-color: #e2e2e2;
+  border-radius: 8px;
+  margin-top: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
 .score-container {
   display: flex;
-  height: 60%;
+  height: 40%;
   gap: 10px;
   margin-top: 10px;
 }

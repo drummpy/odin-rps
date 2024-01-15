@@ -1,4 +1,3 @@
-// Get computer selection
 function getComputerSelection() {
   pick = "";
   num = Math.floor(Math.random() * 3);
@@ -12,10 +11,20 @@ function getComputerSelection() {
   return pick;
 }
 
-function displayStatus(status) {
-  const text = document.createElement("span");
-  text.textContent = status;
-  displayDiv.appendChild(text);
+function displayStatus(status, compSel, playSel) {
+  if (status == "win") {
+    const text = document.createElement("p");
+    text.textContent = status;
+    arena.textContent = `Computer played ${compSel}, you played ${playSel}.  You win!`;
+    leftScore.appendChild(text);
+  } else if (status == "lose") {
+    const text = document.createElement("p");
+    text.textContent = status;
+    arena.textContent = `Computer played ${compSel}, you played ${playSel}.  You lose!`;
+    rightScore.appendChild(text);
+  } else {
+    arena.textContent = `Computer played ${compSel}, you played ${playSel}.  It's a tie!`;
+  }
 }
 
 //Plays single round
@@ -26,23 +35,23 @@ function playRound(choice) {
   console.log(`${compSel} ${playSel}`);
   if (compSel == playSel) {
     winLose = "tie";
-    displayStatus(winLose);
+    displayStatus(winLose, compSel, playSel);
     return winLose;
   } else if (compSel == "rock" && playSel == "scissor") {
     winLose = "lose";
-    displayStatus(winLose);
+    displayStatus(winLose, compSel, playSel);
     return winLose;
   } else if (compSel == "paper" && playSel == "rock") {
     winLose = "lose";
-    displayStatus(winLose);
+    displayStatus(winLose, compSel, playSel);
     return winLose;
   } else if (compSel == "scissor" && playSel == "paper") {
     winLose = "lose";
-    displayStatus(winLose);
+    displayStatus(winLose, compSel, playSel);
     return winLose;
   } else {
     winLose = "win";
-    displayStatus(winLose);
+    displayStatus(winLose, compSel, playSel);
     return winLose;
   }
 }
@@ -50,7 +59,9 @@ function playRound(choice) {
 const rockButton = document.querySelector("#rock-button");
 const paperButton = document.querySelector("#paper-button");
 const scissorButton = document.querySelector("#scissor-button");
-const displayDiv = document.querySelector("#display");
+const leftScore = document.querySelector(".left-score");
+const rightScore = document.querySelector(".right-score");
+const arena = document.querySelector(".arena");
 
 //Cannot use rockButton.addEventListener("click", getPlayerSelection("rock"));, must indirectly call it with below in anon function
 rockButton.addEventListener("click", () => {
