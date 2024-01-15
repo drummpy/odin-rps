@@ -9,6 +9,7 @@ button {
   padding: 8px 16px;
   border-radius: 8px;
   font-weight: 800;
+  border: 1px black solid;
 }
 
 p {
