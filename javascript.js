@@ -14,12 +14,12 @@ function getComputerSelection() {
 function displayStatus(status, compSel, playSel) {
   if (status == "win") {
     const text = document.createElement("p");
-    text.textContent = status;
+    text.textContent = "✓";
     arena.textContent = `Computer played ${compSel}, you played ${playSel}.  You win!`;
     leftScore.appendChild(text);
   } else if (status == "lose") {
     const text = document.createElement("p");
-    text.textContent = status;
+    text.textContent = "✓";
     arena.textContent = `Computer played ${compSel}, you played ${playSel}.  You lose!`;
     rightScore.appendChild(text);
   } else {
